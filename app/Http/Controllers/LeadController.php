@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
 use Illuminate\Http\Request;
 
 class LeadController extends Controller
@@ -11,54 +12,61 @@ class LeadController extends Controller
      */
     public function index()
     {
-        //
+        $leads = Lead::all()->groupBy('status');
+        return view('leads.index', compact('leads'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('leads.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string|max:50',
+            'company' => 'nullable|string|max:255'
+        ]);
+
+
+        Lead::create($data);
+
+
+        return redirect()->route('leads.index')->with('success','Lead created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function edit(Lead $lead)
     {
-        //
+        return view('leads.edit', compact('lead'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function update(Request $request, Lead $lead)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string|max:50',
+            'company' => 'nullable|string|max:255',
+            'status' => 'required|in:'.implode(',', Lead::STATUSES)
+        ]);
+
+
+        $lead->update($data);
+
+
+        return redirect()->route('leads.index')->with('success','Lead updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Lead $lead)
     {
-        //
+        $lead->delete();
+        return redirect()->route('leads.index')->with('success','Lead deleted');
     }
 }
