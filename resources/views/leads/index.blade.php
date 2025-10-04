@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="py-6 px-4">
         <h1 class="text-2xl font-bold mb-4">Lead Pipeline</h1>
+        <a href="{{ route('leads.create') }}">Create lead</a>
         <div class="grid grid-cols-4 gap-4">
             @foreach(App\Models\Lead::STATUSES as $status)
                 <div class="bg-gray-100 p-4 rounded-lg shadow">
