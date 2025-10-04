@@ -28,6 +28,8 @@ Route::middleware(['auth','role:Manager,Admin'])->group(function(){
 });
 
 Route::resource('deals', \App\Http\Controllers\DealController::class);
+Route::resource('tasks', \App\Http\Controllers\TaskController::class)->middleware(['auth']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
