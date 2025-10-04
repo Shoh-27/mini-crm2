@@ -11,6 +11,7 @@
                             <p class="font-medium">{{ $lead->name }}</p>
                             <p class="text-sm text-gray-500">{{ $lead->company }}</p>
                             <a href="{{ route('leads.edit',$lead) }}" class="text-blue-500 text-sm">Edit</a>
+                            <a href="{{ route('leads.show', $lead) }}" class="text-blue-600">View</a>
                         </div>
                     @endforeach
                 </div>

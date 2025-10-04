@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LeadController extends Controller
@@ -63,6 +64,12 @@ class LeadController extends Controller
         return redirect()->route('leads.index')->with('success','Lead updated successfully');
     }
 
+    public function show(Lead $lead)
+    {
+        $lead->load('tasks.assignedTo'); // Tasklarni yuklaymiz
+        $users = User::all();
+        return view('leads.show', compact('lead', 'users'));
+    }
 
     public function destroy(Lead $lead)
     {

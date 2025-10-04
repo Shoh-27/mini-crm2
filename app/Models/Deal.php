@@ -15,4 +15,9 @@ class Deal extends Model
     {
         return $this->belongsTo(Lead::class, 'client_id');
     }
+
+    public function tasks()
+    {
+        return $this->morphMany(Task::class, 'taskable');
+    }
 }

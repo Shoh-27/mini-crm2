@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Deal;
 use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DealController extends Controller
@@ -37,7 +38,9 @@ class DealController extends Controller
 
     public function show(Deal $deal)
     {
-        return view('deals.show', compact('deal'));
+        $deal->load('tasks.assignedTo'); // Tasklarni yuklaymiz
+        $users = User::all();
+        return view('deals.show', compact('deal' , 'users'));
     }
 
     public function edit(Deal $deal)

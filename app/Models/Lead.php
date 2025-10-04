@@ -10,4 +10,9 @@ class Lead extends Model
     use HasFactory;
     protected $fillable = ['name','email','phone','company','status'];
     const STATUSES = ['New','Qualified','Opportunity','Client'];
+
+    public function tasks()
+    {
+        return $this->morphMany(Task::class, 'taskable');
+    }
 }
