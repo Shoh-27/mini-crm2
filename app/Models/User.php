@@ -61,4 +61,9 @@ class User extends Authenticatable
         }
         $this->roles()->syncWithoutDetaching([$role->id]);
     }
+
+    public function Task()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
