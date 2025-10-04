@@ -33,7 +33,7 @@
                 <!-- Desktop links -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="{{ route('leads.index') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Leads</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Deals</a>
+                    <a href="{{route('deals.index')}}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Deals</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Analytics</a>
                 </div>
 
@@ -67,7 +67,7 @@
         <div id="mobileMenu" class="md:hidden hidden border-t border-gray-100">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="{{ route('leads.index') }}" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">Leads</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">Deals</a>
+                <a href="{{route('deals.index')}}" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">Deals</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">Analytics</a>
                 @auth
                     <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">Profil</a>
