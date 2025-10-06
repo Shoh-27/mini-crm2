@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Lead;
 use App\Models\Deal;
+use App\Notifications\TaskReminder;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -36,7 +37,9 @@ class TaskController extends Controller
             'taskable_id' => 'required|integer',
         ]);
 
-        Task::create($request->all());
+        $task = Task::create($request->all());
+        $user = User::find($task->assigned_to);
+        $user->notify(new TaskReminder($task));
 
         return redirect()->route('tasks.index')->with('success', 'Task created successfully!');
     }

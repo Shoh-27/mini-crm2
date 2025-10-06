@@ -13,6 +13,10 @@ class Task extends Model
         'title', 'description', 'status', 'deadline', 'assigned_to', 'taskable_id', 'taskable_type'
     ];
 
+    protected $casts = [
+        'deadline' => 'date', // yoki 'datetime' agar vaqt bo'lsa
+    ];
+
     public function taskable()
     {
         return $this->morphTo();

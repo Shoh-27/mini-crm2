@@ -38,56 +38,13 @@
                 </div>
 
                 <!-- Notifications -->
-                <div class="relative">
-                    <button @click="showNotifications = !showNotifications"
-                            class="relative focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 00-9.33-4.945" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M9 17H4l1.405-1.405A2.032 2.032 0 006 14v-3a6 6 0 1112 0v3a2.032 2.032 0 00.595 1.595L20 17h-5m-6 0a3 3 0 006 0" />
-                        </svg>
-
-                        @if(auth()->user()->unreadNotifications->count() > 0)
-                            <span class="absolute top-0 right-0 block w-2 h-2 bg-red-600 rounded-full"></span>
-                        @endif
-                    </button>
-
-                    <!-- Dropdown Notifications -->
-                    <div x-show="showNotifications"
-                         @click.away="showNotifications = false"
-                         x-transition
-                         class="absolute right-0 mt-2 w-80 bg-white border rounded-lg shadow-lg z-50">
-                        <div class="p-3 border-b flex justify-between items-center">
-                            <span class="font-semibold text-gray-800">Notifications</span>
-                            <form action="{{ route('notifications.read.all') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="text-sm text-blue-600 hover:underline">Mark all read</button>
-                            </form>
-                        </div>
-
-                        <div class="max-h-64 overflow-y-auto">
-                            @forelse(auth()->user()->notifications as $notification)
-                                <div class="px-4 py-2 border-b hover:bg-gray-50 {{ $notification->read_at ? '' : 'bg-gray-100' }}">
-                                    <div class="font-medium text-gray-800">
-                                        Task: {{ $notification->data['title'] }}
-                                    </div>
-                                    <div class="text-sm text-gray-600">
-                                        Deadline: {{ $notification->data['deadline'] ?? '—' }}
-                                    </div>
-                                    <div class="text-xs text-gray-400">
-                                        {{ $notification->created_at->diffForHumans() }}
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="p-4 text-gray-500 text-sm text-center">
-                                    No notifications yet.
-                                </div>
-                            @endforelse
-                        </div>
+                @foreach(auth()->user()->notifications as $notification)
+                    <div class="p-2 border-b">
+                        <strong>{{ $notification->data['title'] }}</strong><br>
+                        Deadline: {{ $notification->data['deadline'] ?? '—' }}
                     </div>
-                </div>
+                @endforeach
+
 
                 <!-- Right: user -->
                 <div class="flex items-center space-x-3">
