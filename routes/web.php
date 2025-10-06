@@ -30,6 +30,10 @@ Route::middleware(['auth','role:Manager,Admin'])->group(function(){
 Route::resource('deals', \App\Http\Controllers\DealController::class);
 Route::resource('tasks', \App\Http\Controllers\TaskController::class)->middleware(['auth']);
 
+Route::post('/notifications/read-all', function () {
+    auth()->user()->unreadNotifications->markAsRead();
+    return back();
+})->name('notifications.read.all');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
