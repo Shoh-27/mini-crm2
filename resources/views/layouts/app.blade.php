@@ -34,7 +34,7 @@
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="{{ route('leads.index') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Leads</a>
                     <a href="{{route('deals.index')}}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Deals</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Analytics</a>
+                    <a href="{{route('analytics.index')}}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">Analytics</a>
                 </div>
 
                 <!-- Notifications dropdown -->
