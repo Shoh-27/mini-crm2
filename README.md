@@ -38,8 +38,8 @@ and intuitive workflow.
 1.  **Clone the repository**
 
     ``` bash
-    git clone https://github.com/yourusername/mini-crm.git
-    cd mini-crm
+    git clone https://github.com/Shoh-27/mini-crm2.git
+    cd mini-crm2
     ```
 
 2.  **Install dependencies**
@@ -94,7 +94,7 @@ Now visit 👉 <http://localhost:8000>
 
 **Shohrux Nizomov**\
 💼 PHP & Laravel Developer\
-📧 <your-email@example.com>\
+📧 <shohruxn405@gmail.com>\
 🌐 [github.com/Shoh-27](https://github.com/Shoh-27)
 
 ------------------------------------------------------------------------
